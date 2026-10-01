@@ -32,13 +32,13 @@ The local snapshot covers three contests: this one, the DEV Kaggle Benchmarking 
   - <VERCEL_URL>/?q=If%20I%20win%20the%20Sanity%20challenge%2C%20when%20does%20the%20cash%20actually%20land%3F
 - **Studio:** `<STUDIO_URL>` (not deployed yet)
 
-![Fine Print answering for a Sanity employee](<IMAGE_URL: docs/img/sanity-employee.png>)
+![Fine Print answering for a Sanity employee](https://raw.githubusercontent.com/Zhuoli/fine-print/main/docs/img/sanity-employee.png)
 
 <!-- Optional: 60-second screen recording embed -->
 
 ## Code
 
-<GITHUB_URL>
+https://github.com/Zhuoli/fine-print
 
 Clone it and run `npm install && npm run seed:build && npm run dev`. It works with **no accounts at all**: GROQ runs locally via groq-js over the same seed, the Context tools fall back to same-named local shims, and with no LLM key a deterministic planner calls the same tools.
 
