@@ -74,10 +74,10 @@ A keyword search would return "October 04" and "seven (7) business days". Answer
 
 ## Sanity Project Details
 
-- **Project ID:** `<PROJECT_ID>`
+- **Project ID:** `9wt4tu94`
 - **Dataset:** `production` (public)
 - Try it with no token:
-  `https://<PROJECT_ID>.apicdn.sanity.io/v2026-09-24/data/query/production?query=*[_type=="conflict"]{title,status,resolvedBy,rationale,"claims":claims[]->{quote,"source":source->title}}`
+  `https://9wt4tu94.apicdn.sanity.io/v2026-09-24/data/query/production?query=*[_type=="conflict"]{title,status,resolvedBy,rationale,"claims":claims[]->{quote,"source":source->title}}`
 
 ## Agent Session
 

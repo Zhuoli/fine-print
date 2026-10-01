@@ -70,11 +70,11 @@ Demo links: `/?p=Sanity%20employee&q=Can%20I%20enter%20the%20Sanity%20challenge%
    ```
 3. **Import content:** `npm run seed:import` (from the repo root).
 4. **Make the dataset public** (Manage → Datasets → production → Public) so judges can query it without a token:
-   `https://<PROJECT_ID>.apicdn.sanity.io/v2026-09-24/data/query/production?query=*[_type=="conflict"]{title,status,rationale}`
+   `https://9wt4tu94.apicdn.sanity.io/v2026-09-24/data/query/production?query=*[_type=="conflict"]{title,status,rationale}`
 5. **Enable Context + Knowledge Bases:** Manage → organization → **Labs**. Create an **organization** API token with **Context Viewer**. Set it as `SANITY_ORGANIZATION_TOKEN`; a project token gets 403.
 6. **Knowledge Base:** in the Context app, follow `kb/knowledge-base.md` (dataset source + website sources + `npm run kb:bundle` file upload). Run the build and resolve its Issues.
 7. **Two MCPs** in the Context app:
-   - `fine-print-groq`: source = dataset `PROJECT_ID.production`, groqFilter `_type in ["contest","ruleSource","clause","conflict","organizer"]` → `SANITY_CONTEXT_MCP_URL`
+   - `fine-print-groq`: source = dataset `9wt4tu94.production`, groqFilter `_type in ["contest","ruleSource","clause","conflict","organizer"]` → `SANITY_CONTEXT_MCP_URL`
    - `fine-print-kb`: source = the Knowledge Base → `SANITY_CONTEXT_KB_MCP_URL`
 
    (An MCP with both a dataset and a KB serves only the dataset, so use two.)

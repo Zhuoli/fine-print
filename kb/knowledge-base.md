@@ -6,7 +6,7 @@
 > Help people entering developer contests and bounties decide whether they are eligible, exactly what they must submit, when entries really close, and how and when prizes are paid. Precedence matters: Official Rules govern contest announcement pages, which govern landing pages and FAQs.
 
 ## Sources
-1. **Dataset source** (project `$SANITY_PROJECT_ID`, dataset `production`):
+1. **Dataset source** (project `9wt4tu94` (`$SANITY_PROJECT_ID`), dataset `production`):
    ```groq
    *[_type in ["contest", "ruleSource", "clause", "conflict"]]{
      _type, title, "slug": slug.current, topic, quote, note, rationale, status, closesAsWritten,

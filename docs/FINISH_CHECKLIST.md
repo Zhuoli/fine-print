@@ -2,8 +2,8 @@
 
 Everything below needs your accounts. The agent did not sign up, publish, or submit anything.
 
-1. **Sanity account** (robotonyszu@gmail.com) → create a project "Fine Print" on the free plan. Send the agent the **project ID** and **org ID**.
-2. Org → **Labs**: enable **Context** and **Knowledge Bases** (beta). Check that both are available on the free plan; the docs don't say.
+1. ✅ **Sanity account** (robotonyszu@gmail.com), project "fine-print" created: **project ID `9wt4tu94`**, dataset `production`, **org ID `otr7jib55`** (filled into `.env.example`, studio config, README, DEV post).
+2. ✅ Org → **Labs**: **Context** enabled (Free plan includes Agent Context). ⚠️ The **Knowledge Bases** option is **not shown** on the Free plan. Judging criterion #3 is "Use of Knowledge Bases", so: ask in Sanity Discord #mcp-server / the DEV launch post whether challenge entrants get KB beta access; meanwhile Path One also accepts "your full dataset through a Context MCP endpoint with embeddings enabled", so ship with the GROQ-mode MCP (+ embeddings if offered) and say so honestly in the post.
 3. Create an **organization API token** with **Context Viewer**. Also create a project token with **Editor** for the seed import, or just run `npx sanity login` in `studio/` and the CLI uses your session.
 4. In `studio/`: `npx sanity login` → `npx sanity schema deploy` → `npx sanity deploy` (hostname `fine-print`, or any free one).
 5. From the root: `npm run seed:import`. Make the `production` dataset **public**.
