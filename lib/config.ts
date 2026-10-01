@@ -4,10 +4,11 @@ export const env = {
   dataset: process.env.SANITY_DATASET || 'production',
   apiVersion: process.env.SANITY_API_VERSION || '2026-09-24',
   readToken: process.env.SANITY_API_READ_TOKEN || '', // only needed if the dataset is private
-  // Sanity Context MCP (needs an *organization* token with Context Viewer)
+  // Sanity Context MCP. Project-level endpoint (api.sanity.io/v2026-03-03/context/mcp/<project>/<dataset>) works with a
+  // project Viewer token; the org-level Context app endpoint needs an organization token with Context Viewer.
   contextGroqUrl: process.env.SANITY_CONTEXT_MCP_URL || '', // MCP whose source is the dataset (GROQ mode)
   contextKbUrl: process.env.SANITY_CONTEXT_KB_MCP_URL || '', // MCP whose source is the Knowledge Base
-  orgToken: process.env.SANITY_ORGANIZATION_TOKEN || '',
+  orgToken: process.env.SANITY_ORGANIZATION_TOKEN || process.env.SANITY_CONTEXT_TOKEN || process.env.SANITY_API_READ_TOKEN || '',
   // LLM
   anthropicKey: process.env.ANTHROPIC_API_KEY || '',
   openaiKey: process.env.OPENAI_API_KEY || '',
