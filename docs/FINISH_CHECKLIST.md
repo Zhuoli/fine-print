@@ -1,15 +1,15 @@
 # What Zhuoli has to do (≈60–90 min), in order. Deadline: Sun Oct 4, 11:59 PM PT (aim for 9:59 PM PT)
 
-Everything below needs your accounts. The agent did not sign up, publish, or submit anything.
+Status 2026-10-01 7:05 AM PT: steps 3–6, 8, and 9 were done by the agent through CLI sessions Zhuoli approved. Nothing has been published or submitted on DEV.
 
 1. ✅ **Sanity account** (robotonyszu@gmail.com), project "fine-print" created: **project ID `9wt4tu94`**, dataset `production`, **org ID `otr7jib55`** (filled into `.env.example`, studio config, README, DEV post).
 2. ✅ Org → **Labs**: **Context** enabled (Free plan includes Agent Context). ⚠️ The **Knowledge Bases** option is **not shown** on the Free plan. Judging criterion #3 is "Use of Knowledge Bases", so: ask in Sanity Discord #mcp-server / the DEV launch post whether challenge entrants get KB beta access; meanwhile Path One also accepts "your full dataset through a Context MCP endpoint with embeddings enabled", so ship with the GROQ-mode MCP (+ embeddings if offered) and say so honestly in the post.
-3. Create an **organization API token** with **Context Viewer**. Also create a project token with **Editor** for the seed import, or just run `npx sanity login` in `studio/` and the CLI uses your session.
-4. In `studio/`: `npx sanity login` → `npx sanity schema deploy` → `npx sanity deploy` (hostname `fine-print`, or any free one).
-5. From the root: `npm run seed:import`. Make the `production` dataset **public**.
-6. Context app: build the KB per `kb/knowledge-base.md`, create the two MCPs, put the URLs + org token in `.env`, then run `npm run check:mcp`.
+3. ✅ (done 10/1) Project **Viewer** token `fine-print-app-read` created via CLI and stored in `/home/box/.secrets/` (chmod 600). It's used for both reading and the project-level Context MCP. An org token isn't needed. ~~Create an **organization API token** with **Context Viewer**. Also create a project token with **Editor** for the seed import, or just run `npx sanity login` in `studio/` and the CLI uses your session.~~
+4. ✅ (done 10/1) Schema deployed; Studio is live at https://fine-print.sanity.studio/ (appId saved in sanity.cli.ts). ~~In `studio/`: `npx sanity login` → `npx sanity schema deploy` → `npx sanity deploy` (hostname `fine-print`, or any free one).~~
+5. ✅ (done 10/1) 60 docs imported; the dataset is public, but dotted `_id`s aren't served anonymously, so the app uses the Viewer token. Dataset embeddings are enabled and ready. ~~From the root: `npm run seed:import`. Make the `production` dataset **public**.~~
+6. ✅ (done 10/1, fallback) Knowledge Bases still aren't available, so the project-level Context MCP over the full dataset is used instead: `https://api.sanity.io/v2026-03-03/context/mcp/9wt4tu94/production?embeddings=true`. `check:mcp` returns 200 and a semantic query works. ~~Context app: build the KB per `kb/knowledge-base.md`, create the two MCPs, put the URLs + org token in `.env`, then run `npm run check:mcp`.~~
 7. LLM key: optional but much better. An Anthropic or OpenAI key costs money, so **it's your call (rule: no spending)**. Without one, the live app runs the deterministic planner, which still answers every demo question.
-8. **GitHub**: create a public repo `fine-print` and push. **Vercel** (Hobby, free): import it and add the env vars.
-9. Fill the placeholders in `docs/DEV_POST.md` (`<VERCEL_URL>`, `<GITHUB_URL>`, `<PROJECT_ID>`, image URL), plus the "Knowledge Base vs. my conflicts" section after the KB build.
+8. ✅ (done 10/1) https://github.com/Zhuoli/fine-print is public. Vercel (Hobby, account robotonyszu, project zhuoli-liang/fine-print) is live at https://fine-print-opal.vercel.app with 5 production env vars set. ~~**GitHub**: create a public repo `fine-print` and push. **Vercel** (Hobby, free): import it and add the env vars.~~
+9. ✅ (done 10/1) All DEV_POST placeholders are filled, and the post states honestly that it uses Context over the full dataset rather than a KB. ~~Fill the placeholders in `docs/DEV_POST.md` (`<VERCEL_URL>`, `<GITHUB_URL>`, `<PROJECT_ID>`, image URL), plus the "Knowledge Base vs. my conflicts" section after the KB build.~~
 10. **DEV account** (robotonyszu@gmail.com) → New post → paste `docs/DEV_POST.md`. Check the tags (`devchallenge, sanitychallenge, sanity, ai`) → publish **yourself**.
 11. Employer check: the Official Rules say "All Entries that violate an Entrant's employer's policies, will be deemed ineligible." Confirm your moonlighting/IP policy first.

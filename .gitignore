@@ -8,3 +8,6 @@ studio/.sanity
 *.tsbuildinfo
 next-env.d.ts
 kb/*.tar.gz
+.vercel
+.env*
+!.env.example
