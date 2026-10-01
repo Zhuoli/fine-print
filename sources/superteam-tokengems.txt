@@ -1,0 +1,45 @@
+Try a Solana Project and Give Useful Feedback | TokenGems
+URL: https://superteam.fun/earn/listing/try-a-solana-project-and-give-useful-feedback-tokengems/
+Deadline (UTC): 2026-10-17T06:59:59.000Z
+Region: Global
+Agent access: HUMAN_ONLY
+Reward: 350 USDC {'1': 100, '2': 75, '3': 75, '4': 50, '5': 50}
+
+Find a Solana project worth talking about.
+Explore TokenGems, leave a useful take on a Solana project, and enter to win a share of 350 USDC across five prizes. One thoughtful contribution is enough to enter.
+HOW TO ENTER
+1. Open https://tokengems.ai, use Connect Wallet to sign in, and complete your profile.
+2. Explore a Solana project through search or the site. Existing token pages and pre-token launch pages are eligible; check that the project is building on Solana.
+3. Post a useful take on its TokenGems page. Share a specific observation, thoughtful question, or practical suggestion. If you use a standalone post, tag the project.
+4. Follow @tokengems on X (https://x.com/tokengems) and repost the contest announcement (https://x.com/tokengems/status/2104572640199672064). We check both before announcing winners; neither affects your score.
+5. Submit your TokenGems profile URL as the main Earn submission link, then add your contribution and project links, plus your X handle, in the questions below.
+Already submitted? You are still in. Follow and repost before the deadline, then edit your submission to add your X handle.
+One contribution is enough. You may submit your best one to three, each about a different project. We judge your strongest contribution. You can keep using TokenGems normally; three is only the limit on what you submit for judging.
+WHAT SHOULD I WRITE?
+Tell people what you noticed and why it matters. A few specific sentences can be enough. Explore the page, demo, documentation, or product, and be clear about what you actually tried.
+Example of the level of detail: "Your demo lets a merchant accept USDC without displaying a wallet address. That makes checkout easier to follow. Can the merchant issue a partial refund? I could not find that in the demo."
+Use your own observation. Thoughtful praise, constructive criticism, and useful questions are equally welcome. Generic comments such as "great project" do not qualify.
+FIVE WINNERS. 350 USDC.
+1st: 100 USDC
+2nd: 75 USDC
+3rd: 75 USDC
+4th: 50 USDC
+5th: 50 USDC
+The TokenGems team judges specificity, evidence of exploration, and usefulness to a builder or another reader. Posting more, collecting likes, or praising a project does not improve your score. If entries are equally strong, we prioritize actionable detail, then the earlier contribution.
+One prize per person. Winners are announced by the date shown on this listing and paid through Superteam Earn within seven days of announcement. If fewer than five eligible entrants participate, only eligible places are awarded.
+BUILDING ON SOLANA?
+You can enter by discussing other teams' projects. If you are preparing a token launch, you can also create a page at https://tokengems.ai/launches and invite feedback. Creating a launch page is optional and does not affect prize eligibility.
+KEEP IT FAIR
+- Free to enter. No purchase, deposit, trade, or token ownership required. No video or original post required; on X, you only need the follow and repost from step 4.
+- One entry per person. Duplicate accounts, copied or generic mass-produced comments, fabricated experiences, and coordinated prize manipulation are disqualified.
+- Contributions about projects you own, work for, or are paid to promote do not qualify. TokenGems staff and contest judges cannot win.
+- Contributions must be posted during this contest before the deadline and stay public through judging. Do not edit submitted contributions after the deadline.
+- Send questions or disputes to the listing contact within seven days of winner announcement.
+This independent TokenGems contest is not affiliated with or endorsed by Colosseum. No token, airdrop, or future allocation is promised. Gems are platform points.
+Start with one project. Share one useful take.
+https://tokengems.ai
+
+
+Submission questions:
+- Link your best 1-3 TokenGems contributions and their project pages. If a comment has no direct link, include its text and page URL. Disclose any project affiliation, or write None.
+- Your X handle (for example @yourname). Before we announce winners, we check that this account follows @tokengems and reposted the contest announcement.

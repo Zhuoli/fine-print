@@ -1,0 +1,226 @@
+Kaggle Benchmarking Challenge - DEV Challenge - DEV Community 
+
+ Skip to content 
+
+ Navigation menu 
+
+ Search 
+
+ Powered by Algolia
+ Search 
+
+ Log in
+
+ Create account
+
+ DEV Community
+
+ Close 
+
+ Kaggle Benchmarking Challenge
+
+ Signed Up
+
+ Sign Up
+
+ Sign Up
+
+ View Entries
+
+ Please sign in to follow this challenge
+
+ Build a benchmark, run it against real models, and tell us what you found.
+
+ Challenge Status: 
+
+ Live 
+ Ended 
+
+ We're excited to team up with Kaggle for a brand new challenge!
+
+ Running through October 11 , the Kaggle Benchmarking Challenge asks you to build a benchmark, run it against real models, and tell us what you found.
+
+ Today's models reason, write code, use tools, and hold multi-turn conversations, and their capabilities will likely change by tomorrow. Public leaderboards only tell you so much, so why not test them against the work you actually do? Kaggle Benchmarks lets you build your own evaluations and run them across a suite of models to see how they really stack up.
+
+ So pick something you've always wondered about, measure it, and show your work. There's a $2,500 prize pool up for grabs across five winners!
+
+ Read on to learn more.
+
+ Key Dates
+
+ Contest start: 
+
+ September 23, 2026
+
+ Submissions due: 
+ October 11, 2026 
+
+ Winners announced: 
+ November 05, 2026 
+
+ Badge Rewards
+
+ Kaggle Benchmarking Challenge Winner Badge 
+
+ Kaggle Benchmarking Challenge Completion Badge 
+
+ Find Out More
+
+ Ask questions and share your ideas on the
+ Kaggle Benchmarking Challenge Launch Post.
+
+ View Launch Post
+
+ Sponsored by Kaggle
+
+ Kaggle is the largest global AI community of developers, researchers, and enthusiasts who compete, collaborate, and benchmark what's next in AI.
+
+ Learn More →
+
+ Challenge Prompt
+
+ Build a Benchmark
+
+ Your mandate is to build a benchmark on Kaggle and write about what you learned.
+
+ Your post should cover:
+
+ What task(s) did you run? Tell us what you're benchmarking and why that capability or behavior caught your interest
+
+ Which models did you run it against? Let us know which models you tested and what made them the right lineup
+
+ What are the main insights? Share your findings, what surprised you, and what you'd measure next
+
+ Where can we see it? Submissions must include a link to your benchmark on Kaggle
+
+ The scope is wide open. Benchmark multi-step reasoning, code generation, tool use, image recognition, instruction following, or that one weird failure mode you keep running into. The best benchmarks usually come from a specific itch rather than a general one.
+
+ The most compelling submissions will go beyond reporting numbers. Tell us what the results actually mean and what they changed about how you think about these models.
+
+ Five winners will each receive $500 USD, a DEV++ Membership, and an exclusive DEV badge. All participants with a valid submission will receive a completion badge on their DEV profile.
+
+ Submission Template
+
+ Note: Submissions must include a link to the benchmark on Kaggle to be eligible.
+
+ Judging Criteria
+
+ Insights Shared
+
+ Writing Quality
+
+ Creativity in Approach
+
+ Prizes
+
+ $500 USD
+
+ + DEV++ Membership
+
+ + Exclusive winner badge
+
+ How To Participate
+
+ Build your benchmark on Kaggle, then publish a post on DEV using the submission template provided above and the required challenge tag #kagglechallenge .
+
+ One submission per participant , so make it count!
+
+ Please review our judging criteria, rules, guidelines, and FAQ page before submitting so you understand our participation guidelines and official contest rules such as eligibility requirements. 
+
+ Helpful Links & Resources
+
+ New to Kaggle Benchmarks? Here's how it works:
+
+ Create a task: Tasks test an AI model's performance on a specific problem, from multi-step reasoning and code generation to tool use and image recognition.
+
+ Build a benchmark: Group your tasks into a benchmark and run it across a suite of models.
+
+ Check the leaderboard: See how the models stack up and share your results.
+
+ Prefer your own setup? You can now create tasks from your local development environment using the Kaggle CLI.
+
+ Helpful resources:
+
+ Kaggle Benchmarks 
+
+ kaggle-benchmarks Python library on GitHub 
+
+ Introducing Community Benchmarks on Kaggle 
+
+ Kaggle is Making AI Benchmark Creation Effortless 
+
+ Frequently Asked Questions
+
+ Participation
+
+ Can I submit to the challenge more than once?
+
+ No, only one submission per participant is allowed. This is to encourage quality over quantity.
+
+ Can I work on a team?
+
+ Yes, you can work on teams of up to four people.
+
+ If you collaborate with anyone, you'll need to list their DEV handles in your submission post so we can award a badge to your entire team! Please only publish one submission per team. 
+
+ DEV does not handle prize-splitting, so in the event that your submission wins the cash prize, you will need to split that amongst yourselves. Thank you for understanding!
+
+ How old do I have to be to participate?
+
+ Participants need to be 18+ in order to participate.
+
+ If I live in X, am I eligible to participate?
+
+ For eligibility rules, see our official challenge rules .
+
+ Submission
+
+ Can my submission include open source code?
+
+ Riffing on open source code and borrowing and improving on previous work/ideas is encouraged but it's important your changes are significant enough to ensure your submission is valid.
+
+ What happens if my submission is considered plagiarized or invalid?
+
+ Anything deemed to be plagiarism will not be eligible for prizes. Incidental plagiarism may simply result in your disqualification from the challenge (regardless of the number of other valid submissions you have published). Egregious plagiarism will result in your suspension from DEV entirely. Any non-generic, non-trivial usage of prior work, including open source code must be credited in your submission.
+
+ Do submissions have to be in English?
+
+ Non-english submissions are eligible for a completion badge but not eligible for prizes due to the current limitations of our judges. We will not be judging on mastery of the English language, so please don't let this deter you from submitting if you are not a native English speaker! We hope to evolve this in the future to be more accommodating.
+
+ Can I use AI?
+
+ Use of AI is allowed as long as all other rules are followed. We want to give you a chance to show off your skills in realistic scenarios. If you use AI tools to help you achieve your submission, all the power to you.
+
+ Judging and Prizing
+
+ Can there be ties?
+
+ In the event of a tie in scoring between judges, the judges will select the entry that received the highest number of positive reactions on their DEV post to determine the winner.
+
+ How will I know if I won?
+
+ Winners will be announced in a DEV post on the winner announcement date noted in our key dates section.
+
+ When will I receive my DEV badge?
+
+ Both participation and winner badges will be awarded, in most cases, the same day as the winner announcement.
+
+ When will I receive my prizes?
+
+ The DEV Team will contact you via the email associated with your DEV profile within, at most, 10 business days of the announcement date to share the details of claiming your prizes.
+
+ What steps do I need to take to receive my cash prize?
+
+ The winner (including each member of a team) may be required to sign and return an affidavit of eligibility and publicity/liability release, and provide any additional tax filing information (such as a W-9, social security number or Federal tax ID number) within seven (7) business days following the date of your first email notification.
+
+ Kaggle Benchmarking Challenge Rules 
+
+ NO PURCHASE NECESSARY. Open only to 18+. Contest entry period ends October 11, 2026 at 11:59 PM PDT. Contest is void where prohibited or restricted by law or regulation. All entries must be submitted during the contest period. For Official Rules, see Kaggle Benchmarking Challenge Contest Rules and General Contest Official Rules .
+
+ Dismiss
+
+ We're a place where coders share, stay up-to-date and grow their careers.
+
+ Log in
+
+ Create account

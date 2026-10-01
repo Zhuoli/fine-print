@@ -1,0 +1,27 @@
+:root { --bg:#0f1115; --panel:#171a21; --ink:#e8e6e1; --muted:#9aa0aa; --accent:#f36458; --ok:#3fb27f; --warn:#e3a33b; --line:#262a33; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+h1 { font: 700 34px/1.1 Georgia, "Times New Roman", serif; margin: 0 0 6px; letter-spacing: -.5px; }
+h1 small { font: 400 13px/1 ui-monospace, monospace; color: var(--accent); margin-left: 10px; vertical-align: middle; }
+.sub { color: var(--muted); margin: 0 0 24px; max-width: 70ch; }
+.grid { display:grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius: 10px; padding: 16px; }
+label { display:block; font-size:12px; color:var(--muted); margin: 10px 0 4px; text-transform: uppercase; letter-spacing: .06em; }
+input, select, textarea { width:100%; background:#0c0e12; color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:8px 10px; font: inherit; }
+textarea { min-height: 84px; resize: vertical; }
+.row { display:flex; gap:8px; align-items:center; margin-top:8px; font-size: 14px; }
+.row input { width:auto; }
+button { background:var(--accent); color:#fff; border:0; border-radius:6px; padding:10px 16px; font-weight:600; cursor:pointer; margin-top: 12px; }
+button:disabled { opacity:.5; cursor: wait; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.chip { background:#0c0e12; border:1px solid var(--line); color:var(--ink); border-radius:999px; padding:5px 10px; font-size:13px; cursor:pointer; margin:0; font-weight: 400; }
+.answer { white-space: pre-wrap; }
+.answer h3 { margin: 16px 0 6px; font-size: 15px; }
+.cite { font: 12px ui-monospace, monospace; color: var(--accent); }
+details { margin-top: 14px; }
+summary { cursor:pointer; color:var(--muted); font-size: 13px; }
+pre { background:#0c0e12; border:1px solid var(--line); border-radius:6px; padding:10px; overflow:auto; font-size:12px; max-height: 340px; }
+.modes { font: 12px ui-monospace, monospace; color: var(--muted); margin-top: 10px; }
+a { color: var(--accent); }
