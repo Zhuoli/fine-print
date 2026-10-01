@@ -5,6 +5,7 @@ import {describeModes, env, modes} from './config'
 import {connectContext} from './mcp'
 import {contextShims, kbOutline, ruleTools, type TraceEntry} from './tools'
 import {cashTimeline, checklist, conflictReport, deadlineStatus, eligibility, getContest, listContests, type Profile} from './rules'
+import {requestSchema} from './validation'
 import {SCHEMA_OVERVIEW} from './schema-overview'
 
 export type AgentResult = {answer: string; trace: TraceEntry[]; modes: ReturnType<typeof describeModes>; contest?: string}
@@ -26,6 +27,7 @@ function pickModel() {
 }
 
 export async function ask(question: string, profile: Profile = {}): Promise<AgentResult> {
+  ;({question, profile} = requestSchema.parse({question, profile}))
   const trace: TraceEntry[] = []
   if (!modes.llm()) return offlinePlanner(question, profile, trace)
 
@@ -75,6 +77,7 @@ async function offlinePlanner(question: string, profile: Profile, trace: TraceEn
     ?? (q.includes('token') || q.includes('superteam') ? 'tokengems-feedback' : 'dev-sanity-2026')
   const c = await getContest(slug)
   if (!c) return {answer: 'No contest found.', trace, modes: describeModes()}
+  trace.push({tool: 'contest_evidence', input: {slug}, output: {clauses: c.clauses, conflicts: c.conflicts}})
   const tz = profile.timeZone || 'UTC'
   const want = {
     deadline: /deadline|\bdue\b|when (is|does)|clos|\btime\b|\blate\b|hours/.test(q),
@@ -88,7 +91,7 @@ async function offlinePlanner(question: string, profile: Profile, trace: TraceEn
 
   if (want.elig) {
     const r = eligibility(c, profile); trace.push({tool: 'check_eligibility', input: {slug, profile}, output: r})
-    const verdict = r.some((x) => x.status === 'fail') ? '❌ Not eligible as described' : r.some((x) => x.status === 'warn' || x.status === 'unknown') ? '⚠️ Eligible, with caveats' : '✅ Eligible'
+    const verdict = r.some((x) => x.status === 'fail') ? '❌ A checked condition fails' : r.some((x) => x.status === 'warn' || x.status === 'unknown') ? '⚠️ Eligibility not confirmed' : '✅ Checked conditions pass; full eligibility not confirmed'
     lines.push(`\n### Eligibility: ${verdict}`, ...r.map((x) => `- ${ICON[x.status]} **${x.check}**: ${x.detail} [${x.clauses.join(', ')}]`))
   }
   if (want.deadline) {
@@ -104,14 +107,15 @@ async function offlinePlanner(question: string, profile: Profile, trace: TraceEn
   }
   if (want.conflict) {
     const x = conflictReport(c); trace.push({tool: 'source_conflicts', input: {slug}, output: x})
-    if (x.length) lines.push('\n### Where the pages disagree', ...x.map((y) => `- **${y.title}** (${y.status}${y.status === 'resolved' ? `, by ${y.resolvedBy}` : ''}): ${y.rationale} [${y.id}]`))
+    if (x.length) lines.push('\n### Where the pages disagree', ...x.map((y) => `- **${y.title}** (${y.status}${y.status === 'resolved' ? `, by ${y.resolvedBy}` : ''}): ${y.rationale} [${y.id}]${y.claims.map((claim) => `\n  ${claim.wins ? 'Governing claim' : 'Claim'} — ${claim.source} (rank ${claim.rank}): “${claim.says}” [${claim.clause}]`).join('')}`))
   }
   if (want.cash) {
     const t = cashTimeline(c); trace.push({tool: 'cash_timeline', input: {slug}, output: t})
     lines.push('\n### If you win', 'cashWindow' in t && t.cashWindow
       ? `- Notified by ${t.notifyBy}; paperwork due ${t.paperworkDueBy}; cash likely **${t.cashWindow}**. Docs: ${(t.requiredDocs || []).join(', ')}. ${t.caveat} [${t.clauses.join(', ')}]`
+      : !t.known && t.detail ? `- ${t.detail} [${t.clauses.join(', ')}]`
       : `- Paid within ${'paidWithinDaysOfAnnouncement' in t ? t.paidWithinDaysOfAnnouncement : '?'} days of the announcement. [${t.clauses.join(', ')}]`)
   }
-  lines.push('\n_Offline planner: no LLM key set, so a keyword router picked the tools above. Every line comes from a clause in Sanity._')
+  lines.push('\n_Offline planner: no LLM key set, so a keyword router picked the tools above. Results use the configured dataset; local seed is not a live Sanity or KB session._')
   return {answer: lines.join('\n'), trace, modes: describeModes(), contest: slug}
 }

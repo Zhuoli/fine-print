@@ -41,8 +41,14 @@ export default function Page() {
 
   async function go(q = question, prof = profile) {
     setBusy(true); setRes(null)
-    const r = await fetch('/api/ask', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({question: q, profile: prof})})
-    setRes(await r.json()); setBusy(false)
+    try {
+      const r = await fetch('/api/ask', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({question: q, profile: prof})})
+      const result = await r.json()
+      setRes(r.ok ? result : {...result, error: result.error || 'Request failed'})
+    } catch {
+      setRes({answer: '', trace: [], modes: {}, error: 'Connection failed. Please try again.'})
+    } finally { setBusy(false) }
+
   }
   // Shareable demo links: /?q=...&p=<preset name>
   useEffect(() => {
@@ -75,13 +81,13 @@ export default function Page() {
         <section className="panel">
           <label>Ask about a contest</label>
           <textarea value={question} onChange={(e) => setQuestion(e.target.value)} />
-          <div className="chips">{QUESTIONS.map((q) => <button className="chip" key={q} onClick={() => { setQuestion(q); go(q) }}>{q}</button>)}</div>
+          <div className="chips">{QUESTIONS.map((q) => <button className="chip" disabled={busy} key={q} onClick={() => { setQuestion(q); go(q) }}>{q}</button>)}</div>
           <button id="ask" disabled={busy} onClick={() => go()}>{busy ? 'Reading the fine print…' : 'Ask'}</button>
           {res?.error && <pre>{res.error}</pre>}
           {res && !res.error && (
             <>
               <div className="answer">{render(res.answer)}</div>
-              <details><summary>Tool trace ({res.trace.length} calls): what the agent asked Sanity</summary>
+              <details><summary>Tool trace ({res.trace.length} calls): tools and evidence used</summary>
                 <pre>{res.trace.map((t) => `▶ ${t.tool} ${JSON.stringify(t.input)}\n${JSON.stringify(t.output, null, 1).slice(0, 1500)}`).join('\n\n')}</pre>
               </details>
               <div className="modes">{Object.entries(res.modes).map(([k, v]) => `${k}: ${v}`).join(' · ')}</div>

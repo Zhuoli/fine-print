@@ -7,16 +7,7 @@ import {cashTimeline, checklist, conflictReport, deadlineStatus, eligibility, ge
 
 export type TraceEntry = {tool: string; input: unknown; output: unknown}
 
-const profileSchema = z.object({
-  country: z.string().optional().describe('ISO 3166-1 alpha-2, e.g. US'),
-  timeZone: z.string().optional().describe('IANA zone, e.g. America/Los_Angeles'),
-  age: z.number().nullable().optional(),
-  employer: z.string().nullable().optional(),
-  usesAI: z.boolean().optional(),
-  wantsAgentToSubmit: z.boolean().optional(),
-  projectStartedOn: z.string().nullable().optional().describe('YYYY-MM-DD'),
-  affiliatedProjects: z.array(z.string()).optional(),
-})
+import {profileSchema, timeZoneSchema} from './validation'
 
 async function contestOrThrow(slug: string) {
   const c = await getContest(slug)
@@ -39,7 +30,7 @@ export function ruleTools(trace: TraceEntry[], defaults: Profile) {
     }),
     check_deadline: tool({
       description: 'Exact close time of a contest in the user\'s time zone, hours left, and a safe target. Never compute times yourself.',
-      inputSchema: z.object({slug: z.string(), timeZone: z.string().optional()}),
+      inputSchema: z.object({slug: z.string(), timeZone: timeZoneSchema.optional()}),
       execute: wrap('check_deadline', async ({slug, timeZone}: {slug: string; timeZone?: string}) =>
         deadlineStatus(await contestOrThrow(slug), timeZone || defaults.timeZone || 'UTC')),
     }),

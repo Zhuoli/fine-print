@@ -71,7 +71,7 @@ export function deadlineStatus(contest: Contest, timeZone = 'UTC', now = new Dat
   if (!contest.entryCloses) {
     return {
       known: false, asWritten: contest.closesAsWritten, clauses,
-      advice: `The sources only give a date ("${contest.closesAsWritten}"), not a time or zone. Treat the start of that date in your own zone as the safe deadline, and look for the contest-rules page for the exact minute.`,
+      advice: `The sources only give a date ("${contest.closesAsWritten}"), not a time or zone. No safe instant can be established from a date alone. Check the contest-rules page or ask the organizers for the time and zone.`,
     }
   }
   const close = new Date(contest.entryCloses)
@@ -161,15 +161,21 @@ export function eligibility(contest: Contest, p: Profile): Check[] {
   }
   // prior work
   const started = byTopic('originality').find((c) => norm(c).mustStartWithinEntryPeriod)
-  if (started && p.projectStartedOn && contest.entryOpens) {
-    const before = new Date(p.projectStartedOn) < new Date(contest.entryOpens)
-    out.push({check: 'Project start date', status: before ? 'fail' : 'pass',
-      detail: before ? `You started on ${p.projectStartedOn}, before the Entry Period opened (${contest.entryOpens.slice(0, 10)}). Build a new entry; reusing OSS is fine if you credit it and change it significantly.` : 'Started inside the Entry Period.',
-      clauses: [started._id, ...byTopic('originality').filter((c) => norm(c).priorWorkAllowed).map((c) => c._id)]})
+  if (started) {
+    const start = p.projectStartedOn ? new Date(p.projectStartedOn).getTime() : NaN
+    const endOfDay = start + 864e5 - 1
+    const opens = contest.entryOpens ? new Date(contest.entryOpens).getTime() : NaN
+    const closes = contest.entryCloses ? new Date(contest.entryCloses).getTime() : NaN
+    const outside = endOfDay < opens || start > closes
+    const inside = start >= opens && endOfDay <= closes
+    out.push({check: 'Project start date', status: outside ? 'fail' : inside ? 'pass' : 'unknown',
+      detail: outside ? 'The supplied date is outside the Entry Period.' : inside ? 'The supplied date falls inside the Entry Period (interpreted as a UTC day).' : 'Provide a start date and confirm the exact time and zone if it touches an Entry Period boundary. Missing bounds cannot establish eligibility.',
+      clauses: [started._id]})
   }
+  out.push({check: 'Coverage', status: 'unknown', detail: 'This is a partial automated check. Account, language, household/agency relationships, local age of majority, and other conditions require review.', clauses: elig.map((c) => c._id)})
   // affiliation (TokenGems style)
   const aff = elig.find((c) => norm(c).excludesAffiliatedProjects)
-  if (aff) out.push({check: 'Project affiliation', status: p.affiliatedProjects?.length ? 'warn' : 'pass',
+  if (aff) out.push({check: 'Project affiliation', status: p.affiliatedProjects === undefined ? 'unknown' : p.affiliatedProjects.length ? 'warn' : 'pass',
     detail: p.affiliatedProjects?.length ? `Don't write about ${p.affiliatedProjects.join(', ')}. Disclose affiliations or write "None".` : 'Write only about projects you don\'t own, work for, or get paid to promote.', clauses: [aff._id]})
   return out
 }
@@ -187,6 +193,10 @@ export function cashTimeline(contest: Contest) {
   const t = contest.payoutTimeline || {}
   const clauses = contest.clauses.filter((c) => c.topic === 'payout').map((c) => c._id)
   const conflicts = contest.conflicts.filter((c) => c.topic === 'payout')
+  if (t.notifyAnchor === 'winnerSelection') return {
+    known: false, clauses, conflicts,
+    detail: `The governing notification window is ${t.notifyWithinBusinessDays} business days after winner selection; that date is not recorded. Paperwork is due ${t.docsDueBusinessDays} business days after first attempted notification. Delivery is ${t.deliveryWeeksMin}–${t.deliveryWeeksMax} weeks after acknowledged acceptance of completed paperwork. The announcement date cannot establish these calendar deadlines.`,
+  }
   if (!contest.winnersAnnounced) return {known: false, clauses, conflicts, detail: 'No announcement date in the sources.', paidWithinDaysOfAnnouncement: t.paidWithinDaysOfAnnouncement}
   const ann = new Date(contest.winnersAnnounced + 'T12:00:00Z')
   if (t.notifyWithinBusinessDays) {

@@ -6,6 +6,8 @@ tags: devchallenge, sanitychallenge, sanity, ai
 
 *This is a submission for the [Sanity Challenge, Path One: Ship an Agent That Queries Real Content](https://dev.to/challenges/sanity-2026-09-16)*
 
+<!-- DRAFT STATUS (delete before publishing): Sanity project 9wt4tu94 exists; seed import, Studio deploy, Context MCP, and KB build not done/verified yet. Replace all remaining placeholders and capture a real session before submitting. -->
+
 ## What I Built
 
 **Fine Print** reads contest rules so you don't miss the clause that disqualifies you.
@@ -17,9 +19,9 @@ I enter a lot of hackathons and bounties. The rules for one contest are never on
 - **Can I reuse a project?** The FAQ says riffing on prior work is encouraged. The Official Rules require that "development of your Entry was started during, and not prior to, the Entry Period".
 - **"Submissions due: October 04, 2026"** is 2:59 PM on **October 5** in Beijing.
 
-Tell Fine Print who you are (country, time zone, age, employer, whether you use AI, whether an agent submits for you). Then ask a plain question. You get a verdict where every line cites the clause it came from, plus the conflicts that affect you.
+Tell Fine Print who you are (country, time zone, age, employer, whether you use AI, whether an agent submits for you). Then ask a plain question. The offline results include clause IDs and a tool trace with source quotes and URLs. Model-generated citation correctness is not yet automatically verified.
 
-It currently covers three live contests: this one, the DEV Kaggle Benchmarking Challenge, and a Superteam Earn bounty (which turns out to be `HUMAN_ONLY`, so an agent can draft for you but not submit).
+The local snapshot covers three contests: this one, the DEV Kaggle Benchmarking Challenge, and a Superteam Earn bounty (which turns out to be `HUMAN_ONLY`, so an agent can draft for you but not submit).
 
 ## Demo
 
@@ -28,7 +30,7 @@ It currently covers three live contests: this one, the DEV Kaggle Benchmarking C
   - <VERCEL_URL>/?p=Sanity%20employee&q=Can%20I%20enter%20the%20Sanity%20challenge%2C%20and%20what%20is%20the%20catch%3F
   - <VERCEL_URL>/?p=Dev%20in%20Beijing%2C%20old%20project&q=When%20exactly%20does%20the%20Sanity%20challenge%20close%20for%20me%3F
   - <VERCEL_URL>/?q=If%20I%20win%20the%20Sanity%20challenge%2C%20when%20does%20the%20cash%20actually%20land%3F
-- **Studio:** <https://fine-print.sanity.studio> (read-only for judges: see "Sanity Project Details")
+- **Studio:** `<STUDIO_URL>` (not deployed yet)
 
 ![Fine Print answering for a Sanity employee](<IMAGE_URL: docs/img/sanity-employee.png>)
 
@@ -52,14 +54,14 @@ Clone it and run `npm install && npm run seed:build && npm run dev`. It works wi
 
 In the Studio, the first item in the desk structure is **⚠️ Open conflicts**, a review queue of contradictions nobody has decided yet.
 
-**Sanity Context, two endpoints:**
+**Planned Sanity Context integration, two endpoints (not yet verified):**
 
 1. **GROQ mode** MCP (`fine-print-groq`), scoped with `groqFilter` to the rule types. The agent uses `groq_query` to follow references. A typical call: one contest, its sources ordered by precedence, every clause that `references()` it, and every conflict with its claims dereferenced. `schema_explorer` covers the rest.
-2. **Knowledge Base mode** MCP (`fine-print-kb`). The Knowledge Base is built from three sources: the dataset (clauses + conflicts), the live rule pages as website sources, and the verbatim snapshots as a file source. The agent reads the outline from initial context and calls `knowledge_base_read` when a clause needs its surrounding paragraph. The KB build also runs its own contradiction pass, which I compared with my hand-modeled conflicts (below).
+2. **Knowledge Base mode** MCP (`fine-print-kb`). The Knowledge Base is built from three sources: the dataset (clauses + conflicts), the live rule pages as website sources, and the verbatim snapshots as a file source. The agent reads the outline from initial context and calls `knowledge_base_read` when a clause needs its surrounding paragraph. After the first KB build, I will record its Issues and compare them with the hand-modeled conflicts; no comparison has been performed yet.
 
 **What the agent does with it.** The model is never allowed to do date math or eligibility logic in its head. It calls five deterministic tools: `check_deadline`, `check_eligibility`, `cash_timeline`, `submission_checklist`, and `source_conflicts`. Each runs GROQ against Sanity and returns verdicts carrying clause ids. The system prompt requires a `[clause.*]` citation on every factual sentence, and requires the agent to say "the rules don't settle this" whenever a conflict is `open`.
 
-A keyword search would return "October 04" and "seven (7) business days". Answering "I'm in Beijing, when must I submit, and if I win, when is my W-9 due and when does the money arrive?" takes the instant, the zone, the precedence ranks, and the anchored business-day windows. Fine Print answers it: notification by Nov 5, paperwork due 7 business days after the first *attempted* notification, cash most likely between Nov 6 and Dec 14.
+A keyword search would return "October 04" and "seven (7) business days". Answering "I'm in Beijing, when must I submit, and if I win, when is my W-9 due and when does the money arrive?" takes the instant, the zone, the precedence ranks, and the anchored business-day windows. Fine Print converts the submission instant to Beijing time, but refuses to invent a cash date: winner selection is not recorded, paperwork is due 7 business days after first attempted notification, and delivery depends on acknowledged acceptance of completed paperwork.
 
 ### Knowledge Base vs. my conflicts
 
@@ -78,6 +80,10 @@ A keyword search would return "October 04" and "seven (7) business days". Answer
 - **Dataset:** `production` (public)
 - Try it with no token:
   `https://9wt4tu94.apicdn.sanity.io/v2026-09-24/data/query/production?query=*[_type=="conflict"]{title,status,resolvedBy,rationale,"claims":claims[]->{quote,"source":source->title}}`
+
+### Reproducible offline evidence
+
+Run `npm test` with no credentials. It checks deadline boundaries, unknown eligibility, request validation, payout-anchor uncertainty, seed references, and a counterfactual: keeping the quoted prose unchanged while changing the normalized minimum age changes the verdict. This demonstrates dependence on structured facts, but is not evidence of a live Context or KB call.
 
 ## Agent Session
 

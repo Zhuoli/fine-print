@@ -240,7 +240,7 @@ const conflicts: Doc[] = [
     title: 'Is the 10-business-day contact window counted from the announcement or from winner selection?',
     claims: [{...ref('clause.sanity.notify.landing'), _key: 'a'}, {...ref('clause.official.notify'), _key: 'b'}],
     status: 'resolved', winningClaim: ref('clause.official.notify'), resolvedBy: 'precedence',
-    rationale: 'Official Rules govern: anchored to winner selection, which may be earlier than the public announcement. In practice the two are the same week, so this is low impact.',
+    rationale: 'Official Rules govern: anchored to winner selection, which may be earlier than the public announcement. The selection date is not recorded, so an absolute notification deadline cannot be computed from the announcement date.',
     severity: 'low',
   },
   {
